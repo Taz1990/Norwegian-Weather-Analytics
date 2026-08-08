@@ -2,24 +2,39 @@ import json
 import psycopg2
 import os
 
+from dotenv import load_dotenv
+load_dotenv()
+
+'''
 # Load environment variables
 POSTGRES_USER = os.getenv("POSTGRES_USER", "${POSTGRES_USER}")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "${POSTGRES_PASSWORD}")
 POSTGRES_DB = os.getenv("POSTGRES_DB", "${POSTGRES_DB}")
 POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
 
+'''
+# Load to Azure
+POSTGRES_USER = os.getenv("PGUSER")
+POSTGRES_PASSWORD = os.getenv("PGPASSWORD")
+POSTGRES_DB = os.getenv("PGDATABASE")
+POSTGRES_PORT = os.getenv("PGPORT")
+
+POSTGRES_HOST = os.getenv("PGHOST")
+
 # Path to your Gold JSON file
 GOLD_FILE = "gold/weather_gold.json"
 
 
 def load_gold():
-    # Connect to PostgreSQL running in Docker
+    # Connect to PostgreSQL running in Azure
     conn = psycopg2.connect(
-        host="localhost",
+        # host="localhost",
+        host=POSTGRES_HOST,
         user=POSTGRES_USER,
         password=POSTGRES_PASSWORD,
         dbname=POSTGRES_DB,
-        port=POSTGRES_PORT
+        port=POSTGRES_PORT,
+        sslmode="require"
     )
     cur = conn.cursor()
 
@@ -66,7 +81,7 @@ def load_gold():
     cur.close()
     conn.close()
 
-    print("Loaded Gold JSON into PostgreSQL successfully!")
+    print("Loaded Gold JSON into Azure PostgreSQL successfully!")
 
 
 if __name__ == "__main__":
