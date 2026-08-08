@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: dim_city
+    description: "Dimension table containing unique cities."
+    columns:
+      - name: city
+        description: "Name of the city."
+
+  - name: dim_date
+    description: "Date dimension with calendar attributes."
+
+  - name: fact_weather
+    description: "Fact table containing weather observations."

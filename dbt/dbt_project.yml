@@ -2,6 +2,7 @@ name: "weather_analytics"
 version: "1.0.0"
 config-version: 2
 
+# MUST MATCH THE PROFILE NAME IN profiles.yml!
 profile: "weather_analytics"
 
 model-paths: ["models"]
