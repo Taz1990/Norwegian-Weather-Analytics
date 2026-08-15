@@ -1,0 +1,26 @@
+# ───────────────────────────────────────────────
+# Norwegian Weather Analytics ELT Pipeline
+# Python 3.11.4
+#
+# System Requirements (not installed via pip)
+# Docker >= 29.5.3
+# Docker Compose >= 5.1.4
+# Used to run local PostgreSQL during development
+# ───────────────────────────────────────────────
+
+# ── Extract + Transform (Python) ───────────────
+requests==2.32.3            # API calls to weather API
+pandas==2.2.2               # Data cleaning + shaping
+python-dotenv==1.0.1        # Load environment variables
+
+# ── Load (Database Connectivity) ───────────────
+sqlalchemy==1.4.54          # PostgreSQL ORM/connection engine
+psycopg2-binary==2.9.12     # PostgreSQL driver
+
+# ── Azure Cloud Integration ─────────────────────
+azure-storage-blob==12.30.0 # Upload RAW/SILVER data to Azure Blob
+
+# ── dbt (SQL Transformations) ───────────────────
+dbt-core==1.12.0             # dbt core engine
+dbt-postgres==1.11.0         # PostgreSQL adapter for dbt
+
